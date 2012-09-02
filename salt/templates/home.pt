@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>Take it with a grain of salt</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <meta name="keywords" content="grain of salt" />
+  <meta name="description" content="Oh god I'm on fire! I'm on FIRE!" />
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.6.0/build/cssreset/cssreset-min.css">
+  <style>
+    .grain div.entry {
+      padding: 10px 5px 10px 10px;
+      margin: 0px 5px 5px 5px;
+      border-radius: 5px;
+      min-width: 200px;
+      
+    }
+
+    body {
+      background-color: #DAD8A7;
+      font: normal x-small verdana, arial, helvetica, sans-serif;
+    }
+
+    a {
+      color: black;
+    }
+
+    .grain .entry a.link {
+      font-size: 16px;
+    }
+    
+    .grain .entry a {
+      opacity: 1;
+    }
+
+    .grain .entry a {
+      text-decoration: none;
+    }
+
+    .grain div.content {
+      display: inline-block;
+    }
+
+    .grain div.entry.Liberal {
+      background-color: #3FB8AF;
+    }
+
+    .grain div.entry.Conservative {
+      background-color: #FF9E9D;
+    }
+
+    .grain div.entry.Libertarian {
+      background-color: #FF3D7F;
+    }
+
+    .grain div.entry.progressive {
+      background-color: #7FC7AF;
+    }
+
+    .grain div.commentContainer {
+      margin: 5px 0px 0px 10px;
+    }
+
+    .grain div.commentContainer a {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    div.header {
+      font-size: 28px;
+      color: #DAD8A7;
+      background-color: black;
+      text-indent: 10px;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+
+    div.footer {
+      background-color: black;
+      color: #DAD8A7;
+      padding: 5px;
+      padding-left: 10px;o
+      font-size: 12px;
+    }
+   
+    div.footer a {
+      text-decoration: underline;
+      color: #DAD8A7;
+    }
+  </style>
+</head>
+<body class="grain">
+  <div class="header">
+    Salt
+  </div>
+  <div tal:repeat="sub subs" >
+    <div  class="entry ${sub.subreddit}">
+      <div>
+        <a class="link" tal:content="sub.title" href="${sub.url}" />
+      </div>
+      <div class="commentContainer">
+        <a  href="${sub.permalink}" tal:condition="sub.num_comments > 1"> ${sub.num_comments} Comments</a>
+        <a  href="${sub.permalink}" tal:condition="sub.num_comments <= 1">
+          <span tal:condition="sub.num_comments > 0">${sub.num_comments}</span> Comment</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+  Powered by Reddit.  Created after 4 beers by <a href="https://github.com/mweiss">Michael Weiss</a>.  ${phrase}
+  </div>
+</body>
+</html>
